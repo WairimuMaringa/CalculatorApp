@@ -44,6 +44,30 @@ class MainCalc(App):
 
             return main_layout
 
+    def on_button_press(self, instance):
+        current = self.solution.text
+        button_text = instance.text
+
+        if button_text == 'C':
+            self.solution.text = ""
+        else:
+            if current and (
+                self.last_was_operator and button_text in self.operators):
+                return
+            elif current == "" and button_text in self.operators:
+                return
+            else:
+                new_text = current + button_text
+                self.solution.text = new_text
+        self.last_button = button_text
+        self.last_was_operator = self.last_button in self.operators
+
+    def on_solution(self, instance):
+        text = self.solution.text
+        if text:
+            solution = str(eval(self.solution.text))
+            self.solution.text = solution
+
 
 if __name__ == "__main__":
     app = MainCalc()
