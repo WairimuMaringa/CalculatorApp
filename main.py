@@ -23,6 +23,15 @@ class MainCalc(App):
         ]
 
         for row in buttons:
+            h_layout = BoxLayout()
+            for label in row:
+                button = Button(
+                    text = label, font_size=30, backgroun_color="grey",
+                    pos_hint={"center_x": 0.5, "center_y": 0.5},
+                )
+
+                h_layout.add_widget(button)
+            main_layout.add_widget(h_layout)
 
 
 if __name__ == "__main__":
